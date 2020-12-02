@@ -17,8 +17,9 @@
 
   <nav class="light-blue darken-2">
     <div class="nav-wrapper container">
-      <a href="../index.html" class="brand-logo">Home</a>
+      <a href="./Home.jsp" class="brand-logo">Home</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
+      	<li><a href="./InicioSesion.jsp">Iniciar Sesión</a></li>
       </ul>
     </div>
   </nav>
@@ -34,7 +35,7 @@
       </div>
       <div class="col s4">
         <div class="row">
-    	<form class="col s12" action="../Login" method="POST">
+    	<form class="col s12" action="/Practica03/Login" method="POST">
     		<div class="row">
         		<div class="input-field col s12">
           			<input id="email" type="email" name="correo">
@@ -48,7 +49,7 @@
         		</div>
       		</div>
       		<div class="center">
-    			<button class="btn waves-effect waves-light green" type="submit" name="action" value="login">Iniciar sesión</button>
+    			<button class="btn waves-effect waves-light green" type="submit" name="resp" value="login">Iniciar sesión</button>
    			</div>
     	</form>
     </div>
