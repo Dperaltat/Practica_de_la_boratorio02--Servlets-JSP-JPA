@@ -4,8 +4,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 
 import dao.*;
+import entidad.*;
 
 public class JPAGenericDAO<T, ID> implements GenericDAO<T, ID> {
 
@@ -14,7 +18,7 @@ public class JPAGenericDAO<T, ID> implements GenericDAO<T, ID> {
 
 	public JPAGenericDAO(Class<T> persistentClass) {
 		this.persistentClass = persistentClass;
-		this.em = Persistence.createEntityManagerFactory("jpa").createEntityManager();
+		this.em = Persistence.createEntityManagerFactory("db-jpa").createEntityManager();
 	}
 
 	@Override
@@ -61,10 +65,10 @@ public class JPAGenericDAO<T, ID> implements GenericDAO<T, ID> {
 				em.getTransaction().rollback();
 		}
 	}
-	
+
 	@Override
 	public List<T> find() {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
@@ -92,5 +96,13 @@ public class JPAGenericDAO<T, ID> implements GenericDAO<T, ID> {
 
 	}
 
+	@Override
+	public Usuario buscar(String email, String contrasena) {
+		Query nativeQuery = em.createNativeQuery("SELECT u FROM usuario u WHERE correo = ? AND pwd = ? ", Usuario.class);
+		nativeQuery.setParameter(1, email);
+		nativeQuery.setParameter(2, contrasena);
+
+		return (Usuario) nativeQuery.getSingleResult();
+	}
 
 }

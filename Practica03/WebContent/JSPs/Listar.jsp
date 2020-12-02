@@ -23,6 +23,8 @@
     </div>
   </nav>
   
+  <c:set var="lista" scope="request" value="${productos}" />
+  
 <div class="container">
 	<h3>Lista de Productos</h3>
 	
@@ -34,15 +36,12 @@
 		</tr>
 	</thead>
 		<tbody>
-			<form action="../ListarProductoControlador" method="POST">
-				<button class="btn waves-effect waves-light green" type="submit" name="mostrarPrincipalLista" value="visualizar">Mostar info</button>
-			</form>
-			<c:forEach var="pr" items="${productos}">
-				<tr>
-				<td>${pr.idProducto}</td>
-				<td>${pr.nombre}</td>
-				</tr>
-			</c:forEach>
+		<c:forEach var="p" items="${lista}">
+			<tr>
+				<td>${p.idProducto}</td>
+				<td>${p.nombre}</td>
+			</tr>
+		</c:forEach>
 		</tbody>
 	</table>
 </div>  
