@@ -25,4 +25,10 @@ public interface GenericDAO<T,ID> {
 	List<T> findAll();
 	
 	Usuario buscar(String email, String pwd);
+	
+	List<Requerimiento> listarProductos0();
+	
+	List<Producto> listarProductos1();
+	
+	List<Empresa> listarProductos2();
 }
