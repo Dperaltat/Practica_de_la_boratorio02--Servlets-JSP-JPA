@@ -1,6 +1,9 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.*;
 import entidad.*;
+import jpa.JPAUsuarioDAO;
 
 @WebServlet(name = "controladorSesiones", urlPatterns = { "/controladorSesiones" })
 public class ControladorSesiones extends HttpServlet {
@@ -24,53 +28,42 @@ public class ControladorSesiones extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-
-		HttpSession sesion = request.getSession();
-		sesion.setAttribute("accesos", sesion.getAttribute("accesos"));
-
-		System.out.print("Id sesion IndexController: " + sesion.getAttribute("accesos"));
-		RequerimientoDAO telefonoDao = DAOFactory.getFactory().getRequerimientoDAO();
-		Usuario usuario = new Usuario();
+		response.setContentType("text/html:charset=UTF-8");
+		String url = null;
+		
+		//RequerimientosDAO requerimientoDAO = DAOFactory.getFactory().getRequerimientoDAO();
 		UsuarioDAO usuarioDao = DAOFactory.getFactory().getUsuarioDAO();
 
-		if (Integer.parseInt(request.getParameter("id")) == 1) {
-			usuario = usuarioDao.read(request.getParameter("c"));
-			//System.out.println("Cedula usar: " + request.getParameter("c"));
+		Object mostrar = request.getParameter("mostrarPrincipalU");
+		List<Requerimiento> req = new ArrayList<Requerimiento>();
+		List<Producto> pr = new ArrayList<Producto>();
+		List<Empresa> em = new ArrayList<Empresa>();
+		HttpSession sesion = request.getSession(true);
 
-			//System.out.println("Apellido user: " + usuario.getApellido());
-			request.setAttribute("idc", request.getParameter("c"));
-			request.setAttribute("usuario", usuario);
-			getServletContext().getRequestDispatcher("/JSPs/Agregar.jsp").forward(request, response);
+		sesion.setAttribute("accesos", sesion.getId());
+		System.out.println("ID sesion Usuario: " + String.valueOf(sesion.getId()));
+		
+		/*if (mostrar.equals("mostrar")) {
+			try {
+				req = usuarioDao.listarProductos0();
+				pr = usuarioDao.listarProductos1();
+				em = usuarioDao.listarProductos2();
+				request.setAttribute("requerimientos", req);
+				request.setAttribute("productos", pr);
+				request.setAttribute("empresas", em);
+				JPAUsuarioDAO nuevo = new JPAUsuarioDAO();
+				if (nuevo.rol.equals("A")) {
+					url="/JSPs/Admin.jsp";
+				}else if(nuevo.rol.equals("U")){
+					url="/JSPs/Usuario.jsp";
+				}
+			} catch (Exception e) {
+				url="/JSPs/InicioSesion.jsp";
+				System.out.println("Error en el login: " + e.getMessage());
+			}
+			request.getRequestDispatcher(url).forward(request, response);
+		}*/
 
-		} else if (Integer.parseInt(request.getParameter("id")) == 2) {
-
-			// System.out.println(telefonoDao.find().telf_id +','+ str.id_user
-			// +','+str.numero+','+str.tipo+','+str.operadora);
-			usuario = usuarioDao.read(request.getParameter("idU"));
-
-			//request.setAttribute("telefono", telefonoDao.buscarCedula(usuario.getCedula()));
-			request.setAttribute("usuario", usuario);
-			getServletContext().getRequestDispatcher("/JSPs/IndexUsuario.jsp").forward(request, response);
-
-		}
-
-		if (Integer.parseInt(request.getParameter("id")) == 3) {
-			System.out.print("Esta ingresando a ver lista de telefono");
-			System.out.println(telefonoDao.findAll());
-			request.setAttribute("telefono", telefonoDao.findAll());
-			getServletContext().getRequestDispatcher("/JSPs/ModoInvitado.jsp").forward(request, response);
-
-		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
+	
 }
