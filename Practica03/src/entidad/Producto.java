@@ -37,6 +37,10 @@ public class Producto implements Serializable {
 	}
 
 
+	public Producto(int id, String nombre2, String requerimiento, Categoria catg) {
+	}
+
+
 	public String getIdProducto() {
 		return idProducto;
 	}

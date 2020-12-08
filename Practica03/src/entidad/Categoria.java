@@ -94,7 +94,4 @@ public class Categoria implements Serializable {
 	public String toString() {
 		return "Categoria [idCategoria=" + idCategoria + ", nombre=" + nombre + ", productos=" + productos + "]";
 	}
-	
-	
-   
 }
