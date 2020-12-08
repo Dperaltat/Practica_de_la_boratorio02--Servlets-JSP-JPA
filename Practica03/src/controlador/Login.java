@@ -16,12 +16,9 @@ import entidad.Usuario;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
     public Login() {
-        super();
-        
+        super();   
     }
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -44,9 +41,6 @@ public class Login extends HttpServlet {
 			correo = request.getParameter("correo");
 			contrasena = request.getParameter("clave");
 			user = usuarioDao.buscar(correo, contrasena);
-		}
-		
-		
+		}	
 	}
-
 }
