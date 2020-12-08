@@ -40,7 +40,7 @@ public class RegistrarProductoControlador extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println(request.getParameter("categ"));
+		System.out.println(request.getParameter("categorias"));
 		
 		String url, descripcion, nombre, requerimiento;
 		int id;
