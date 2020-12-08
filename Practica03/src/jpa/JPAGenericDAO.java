@@ -1,5 +1,6 @@
 package jpa;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -16,6 +17,10 @@ public class JPAGenericDAO<T, ID> implements GenericDAO<T, ID> {
 
 	private Class<T> persistentClass;
 	protected EntityManager em;
+	public static String nuevoCorreo;
+	public static String nuevoClave;
+	public static String id;
+	public static String idEmpresa;
 	public static String rol;
 
 	public JPAGenericDAO(Class<T> persistentClass) {
@@ -100,11 +105,11 @@ public class JPAGenericDAO<T, ID> implements GenericDAO<T, ID> {
 
 	@Override
 	public Usuario buscar(String email, String contrasena) {
-		Query nativeQuery = em.createNativeQuery("SELECT u FROM usuario u WHERE correo = ? AND pwd = ? ", Usuario.class);
+		/*Query nativeQuery = em.createNativeQuery("SELECT * FROM usuario where correo =? AND clave=?", Usuario.class);
 		nativeQuery.setParameter(1, email);
 		nativeQuery.setParameter(2, contrasena);
 		
-		/*try {
+		try {
 			if (rs != null && rs.next()) {
 				id = rs.getString("id");
 				rol = rs.getString("rol");
@@ -112,11 +117,12 @@ public class JPAGenericDAO<T, ID> implements GenericDAO<T, ID> {
 			}	
 		} catch (SQLException e) {
 			System.out.println(">>>WARNING (JDBCUsuarioDAO:read): " + e.getMessage());
-		}*/
+		}
 
-		return (Usuario) nativeQuery.getSingleResult();
+		return (Usuario) nativeQuery.getSingleResult();*/
+		return null;
 	}
-
+	
 	@Override
 	public List<Requerimiento> listarProductos0() {
 		// TODO Auto-generated method stub
