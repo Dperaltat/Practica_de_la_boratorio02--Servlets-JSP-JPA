@@ -14,7 +14,7 @@ public class JPAProductoDAO extends JPAGenericDAO<Producto, String> implements P
 	
 	@Override
 	public List<Producto> find_emp(int emp) {
-		String jpql = "SELECT p FROM Producto p WHERE p.empresa.id = "+emp;
+		String jpql = "SELECT p FROM Producto p WHERE p.idrequerimientos.id = "+emp;
 		List<Producto> list = new ArrayList<Producto>();
 		
 		list = (List<Producto>) em.createQuery(jpql, Producto.class).getResultList();

@@ -43,7 +43,7 @@ public class ListarProductoEmpresaControlador extends HttpServlet {
 		
 		try {
 			
-			id = Integer.valueOf(request.getParameter("id").toString());		
+			id = Integer.valueOf(request.getParameter("idProducto").toString());		
 			pr = productoDAO.find_emp(id);
 			url = "/startbootstrap-sb-admin-gh-pages/dist/public/home.jsp";
 			

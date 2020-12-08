@@ -13,7 +13,7 @@ public class JPAUsuarioDAO extends JPAGenericDAO<Usuario, String> implements Usu
 	public Usuario login(String mail, String pass) {
 		
 		Usuario user = null;
-		String jpql = "SELECT u FROM Usuario u WHERE u.correo = '"+mail+"' and u.contrasena = '"+pass+"'";
+		String jpql = "SELECT u FROM Usuario u WHERE u.correo = '"+mail+"' and u.clave = '"+pass+"'";
 		//em.createQuery("SELECT p FROM Product p WHERE p.category='" + category + "'");
 		
 		try {
