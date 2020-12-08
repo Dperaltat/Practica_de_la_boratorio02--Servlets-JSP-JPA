@@ -22,6 +22,8 @@ public interface GenericDAO<T,ID> {
 	public List<Requerimiento> buscarCedInv(String cedula);
 	public List<Usuario> buscarCorreo(String correo); */
 	
+	//Empresa buscarEmpresa();
+	
 	List<T> findAll();
 	
 	Usuario buscar(String email, String pwd);
